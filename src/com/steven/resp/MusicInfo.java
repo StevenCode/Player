@@ -1,9 +1,9 @@
 package com.steven.resp;
 
 import com.steven.utils.IOUtils;
+import javafx.util.Duration;
 
 import java.text.DecimalFormat;
-import java.time.Duration;
 
 public class MusicInfo {
     public static int myindex = -1;

@@ -27,6 +27,7 @@ public class Player extends Application{
         VBox root = new VBox();
         root.setId("bg");
         root.setPrefSize(300, 635);
+        root.getStylesheets().add(ResourceManager.getResourceUrl("/com/steven/index.css"));
 
         top = new TopContainer();
         root.getChildren().add(top.getView());

@@ -50,11 +50,11 @@ public class TopContainer implements EventHandler<MouseEvent>{
         AnchorPane.setLeftAnchor(menubar, 5.0);
         AnchorPane.setTopAnchor(menubar, 0.0);
 
-//        controls = new Controls();
-//        Node cview = controls.getView();
-//        view.getChildren().add(cview);
-//        AnchorPane.setLeftAnchor(cview, 10.0);
-//        AnchorPane.setTopAnchor(cview, 32.0);
+        controls = new Controls();
+        Node cview = controls.getView();
+        view.getChildren().add(cview);
+        AnchorPane.setLeftAnchor(cview, 10.0);
+        AnchorPane.setTopAnchor(cview, 32.0);
     }
 
     @Override

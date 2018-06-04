@@ -79,6 +79,8 @@ public class AppConfig {
         }
     }
 
-
+    public static void debug(Object obj){
+        System.out.println(obj);
+    }
 
 }
