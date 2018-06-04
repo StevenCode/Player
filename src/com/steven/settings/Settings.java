@@ -1,7 +1,7 @@
 package com.steven.settings;
 
 import com.steven.StageDragListener;
-import com.steven.ViewContext;
+import com.steven.ViewsContext;
 import com.steven.resp.AppConfig;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,7 +33,7 @@ public class Settings implements EventHandler<ActionEvent> {
 
     public Settings() {
         stage = new Stage();
-        stage.initOwner(ViewContext.stage());
+        stage.initOwner(ViewsContext.stage());
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.initModality(Modality.APPLICATION_MODAL);
         Label title = LabelBuilder.create().translateX(5).text("选项设置").textFill(Color.WHITE).build();

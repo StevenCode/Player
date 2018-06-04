@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ViewContext {
+public class ViewsContext {
     public static final int TOP = 1;
     public static final int PLAY_ACCORDION = 2;
     public static final int SEARCH_INPUt = 3;
@@ -20,7 +20,7 @@ public class ViewContext {
     }
 
     public static void initStage(Stage stage) {
-        ViewContext.stage = stage;
+        ViewsContext.stage = stage;
     }
 
     public static MediaPlayer player() {
@@ -28,7 +28,7 @@ public class ViewContext {
     }
 
     public static void setPlayer(MediaPlayer player) {
-        ViewContext.player = player;
+        ViewsContext.player = player;
     }
 
     public static void bindComponent(int key, Object value) {
