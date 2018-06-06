@@ -96,6 +96,10 @@ public class TopContainer implements EventHandler<MouseEvent>{
         };
     }
 
+    public AbstractView getControls(){
+        return controls;
+    }
+
     private void loadAbout() {
         if (about != null) {
             return;

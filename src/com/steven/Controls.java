@@ -2,6 +2,7 @@ package com.steven;
 
 import com.steven.controls.Zlider;
 import com.steven.controls.Zlider.DragingHandler;
+import com.steven.lyric.LyricContainer;
 import com.steven.utils.ImageUtils;
 import com.steven.utils.ResourceManager;
 import com.steven.utils.StringUtils;
@@ -129,7 +130,7 @@ public class Controls extends AbstractView implements EventHandler<MouseEvent>{
     }
 
     public double getVolume() {
-        sound.getValue();
+        return sound.getValue();
     }
 
     @Override
@@ -175,12 +176,12 @@ public class Controls extends AbstractView implements EventHandler<MouseEvent>{
         }
 
         if (target == play_pause) {
-            if (ViewsContext.player().getStatus() == Status.PLAYING) {
+            if (ViewsContext.player().getStatus() == MediaPlayer.Status.PLAYING) {
                 ViewsContext.player().pause();
                 LyricContainer.getLyricContainer().pause();
                 play_pause.setId("play");
-            } else if (ViewsContext.player().getStatus() == Status.PAUSED
-                    || ViewsContext.player().getStatus() == Status.STOPPED) {
+            } else if (ViewsContext.player().getStatus() == MediaPlayer.Status.PAUSED
+                    || ViewsContext.player().getStatus() == MediaPlayer.Status.STOPPED) {
                 ViewsContext.player().play();
                 LyricContainer.getLyricContainer().play();
                 play_pause.setId("pause");

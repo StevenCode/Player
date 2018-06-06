@@ -1,9 +1,15 @@
 package com.steven;
 
+import com.steven.lyric.LyricContainer;
+import com.steven.resp.MusicInfo;
 import com.steven.utils.ResourceManager;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -15,6 +21,7 @@ public class Player extends Application{
     @Override
     public void start(Stage pstage) throws Exception {
         ViewsContext.initStage(pstage);
+
 
         pstage.initStyle(StageStyle.TRANSPARENT);
         pstage.setResizable(false);
@@ -31,8 +38,22 @@ public class Player extends Application{
 
         top = new TopContainer();
         root.getChildren().add(top.getView());
+        CenterContainer cc = new CenterContainer();
+        root.getChildren().add(cc.getView());
+        BottomContainer bc = new BottomContainer();
+
+        root.getChildren().add(bc.getView());
 
         TrayManager.getTrayManager().initTray();
+
+        PlayAccordion.playIndex.addListener(new ChangeListener<MusicInfo>(){
+            public void changed(ObservableValue<? extends MusicInfo> values, MusicInfo old, MusicInfo newv){
+                playMusic(newv);
+                top.getControls().setMusic(newv);
+                PlayAccordion pa=(PlayAccordion)ViewsContext.getComponent(ViewsContext.PLAY_ACCORDION);
+                pa.updateListenView(old, newv);
+            }
+        });
 
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -42,6 +63,31 @@ public class Player extends Application{
         StageDragListener listener = new StageDragListener(ViewsContext.stage());
         listener.enableDrag(top.getView());
         pstage.show();
+    }
+
+
+
+    void playMusic(MusicInfo music){
+        Controls con = (Controls) top.getControls();
+        if(ViewsContext.player() != null){
+            ViewsContext.player().stop();
+            ViewsContext.player().dispose();
+            ViewsContext.setPlayer(null);
+        }
+
+        Media media = new Media(music.url);
+        ViewsContext.setPlayer(new MediaPlayer(media));
+
+        ViewsContext.player().setOnReady(new Runnable(){
+            public void run(){
+                LyricContainer.lyric_init = true;
+                LyricContainer.getLyricContainer().showLyric();
+                ViewsContext.player().play();
+            }
+        });
+
+        ViewsContext.player().setVolume(con.getVolume());
+        ViewsContext.player().setAutoPlay(false);
     }
 
     public static void main(String[] args) {

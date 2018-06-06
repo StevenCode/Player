@@ -9,7 +9,7 @@ import java.util.Map;
 public class ViewsContext {
     public static final int TOP = 1;
     public static final int PLAY_ACCORDION = 2;
-    public static final int SEARCH_INPUt = 3;
+    public static final int SEARCH_INPUT = 3;
 
     private static final Map<Integer, Object> components = new HashMap<>();
     private static Stage stage;

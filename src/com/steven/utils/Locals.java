@@ -20,4 +20,23 @@ public class Locals {
 
         return source;
     }
+
+    public static double getTopScreen(Node node){
+        Parent parent = node.getParent();
+        Bounds childBounds = node.getBoundsInParent();
+        Bounds parentBounds = parent.localToScene(parent.getBoundsInLocal());
+
+        return childBounds.getMinY() + parentBounds.getMinY() + parent.getScene().getY()
+                + parent.getScene().getWindow().getY();
+    }
+
+
+    public static double getRightScreen(Node node){
+        Parent parent = node.getParent();
+        Bounds childBounnds = node.getBoundsInParent();
+        Bounds parentBounds = parent.localToScene(parent.getBoundsInLocal());
+
+        return childBounnds.getMaxX() + parentBounds.getMinX() + parent.getScene().getX()
+                + parent.getScene().getWindow().getX();
+    }
 }
